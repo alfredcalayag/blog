@@ -15,4 +15,14 @@ end
 print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
+
+How about HTML code:
+{% highlight html %}
+
+<html>
+  <title>el titulo</title>
+</html>
+
+{% endhighlight %}
+
 How cool is that?!

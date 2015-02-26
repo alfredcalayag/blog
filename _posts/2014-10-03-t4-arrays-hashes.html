@@ -1,0 +1,71 @@
+---
+layout: post
+title:  #ArraysandhashesRrelated #hashandhashtagsarenot
+date:   2014-10-03
+categories: DBC, Technical
+---
+
+<p>We're starting to get familiar with arrays and hashes here at DBC and implementing them in our Ruby code.  Here's my rendition of the story.  I will put more emphasis on the arrays because once you understand that, there's a lot of hand-me-down concepts that apply to hashes that don't need to be re-explained.  *cracks knuckles*</p>
+
+<p><b>Array.</b>  A ray of light. Think of line.  Think of a list. Visualize a single row with some number of columns.  Got it?  So you've painted a picture of a row of empty boxes.  They are in this specific order.  You cannot rearrange the boxes.  Now fill those empty boxes with some of your junk.</p>
+
+<p>Now you've got an array of junk (hey, at least it's your junk).  Without any visual indicators, how can you point me to the box that has your dirty socks?  No, you can't point with your lips either.  Remember when I said they are in a specific order?  That's because each box has an assigned "index" (or number) which identifies that specific location in the array.  It's the same way sports teams identify players by number on their jerseys, and the same idea as pulling your number when you get to the DMV line.  Oh... that feeling when your number gets called at In-and-Out. *ahem* The index is the indicator of an item's location in the array.</p>
+
+<p>Alright, now I got good news and bad news.  The problem is, it's the same news.  I'll be showing some CODING examples of how to play with arrays.  Are you ready for this?</p>
+<p>Define an array of your junk filled with dirty socks, soccer ball, tater tots, and a toothbrush:</p>
+
+<div id="code_block">
+<code>junk_array = [dirtysocks, soccerball, tatertots, toothbrush]</code>
+</div>
+
+<p>In this case there are 4 items in the array.  Of course, we may be looking at someone else's junk array and won't know how many items there are.  Here's how we can find out:</p>
+
+<div id="code_block">
+<code>
+  junk_array.length -> 4<br>
+  junk_array.count -> 4
+</code></div>
+
+<p>Both the <code>.length</code> and the <code>.count</code> methods will work.  In our example, this would return 4 to us being that you have 4 items in your junk.<p>
+
+<p>Using the index:</p>
+<code>junk_array[x]</code>
+<p>The 'x' inside the brackets represents the index. In calling each of the array items:</p>
+
+<div id="code_block">
+<code>
+  junk_array[0] -> dirtysocks<br>
+  junk_array[1] -> soccerball<br>
+  junk_array[2] -> tatertots<br>
+  junk_array[3] -> toothbrush
+</code></div>
+
+<p>I hope that gives you a lamens explanation of arrays.  BTW, I think you have some cleaning to do.</p><br>
+
+<p><b>Hashes.</b>  Not a hash tag.  Not a hash brown (man i'm getting hungry now).  Let's get back to visualizing it as an array to begin with. Sort of. Only now instead of 1 item per box, you know have 2 items that is referred to as a "key" and a "value".  They go together as a pair and you'll succesfully google them referred to as a "key-value" pair. Can't have one without the other (I think I hear my wife calling).  A "key" would be used somewhat like a label of a container, and a "value" would be the content of the container.  The power of hash over an array is that with an array, we were limited to pointing to items using the index.  With a hash, we can additionally point to items using the key or value.  You could potentially ignore the order of your junk, let it clutter in your room, but still find your stuff when you want it.</p>
+<p>Here's how we can define a hash of your junk:</p>
+
+<div id="code_block">
+<code>
+  hash_junk = {<br>
+    :clothes => "socks",<br>
+    :balls => "soccerball",<br>
+    :snacks => "tatertots",<br>
+    :hygiene => "toothbrush"}<br>
+</code></div>
+
+<p>Your mess is starting to get a little more organized, right? Here's some ways to use it:</p>
+
+<div id="code_block">
+<code>
+  hash_junk[:clothes] -> "socks"<br>
+  hash_junk[:balls] -> "soccerball"<br>
+  hash_junk.key("tatortots") -> :snacks<br>
+  hash_junk.key("toothbrush") -> :hygiene
+</code></div>
+
+<p>(Hey, when did your socks get clean?)</p>
+
+<p><b>When to choose an array over a hash?</b>That will really depend on your needs.  The way I see it, arrays are perfect for a simple ordered list.  Please keep it simple!  Hashes are great for categorized items... let's say a restaurant menu with the food item and its associated price.  I will likely almost always try to use an array first and milk it for all its worth unless it becomes evident that hashes make a simpler solution.</p>
+
+<p>There's way more things you can do with arrays and hashes, that would take way more time to explain.  This should give a good high-level introduction and a starting point.  If you're like me, give it a few tries and if you need to do something specific, do some googling.  I do find myself referring to the <a href="http://www.ruby-doc.org">ruby-doc</a> as sort of a dictionary for Ruby code.</p>

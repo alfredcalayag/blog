@@ -1,0 +1,32 @@
+---
+layout: post
+title:  Groupies for #group_by
+date:   2014-10-09
+categories: DBC, Technical
+---
+<p>In my quest to learn Ruby I come across several public Ruby methods on ruby-doc.org.  While I know there are tons of useful methods I can learn and use, it's damn there a dictionary. I find myself being the type only to scour this dictionary when I'm looking for a specific method that will do my bidding.  I don't read a dictionary just to read.  While my tendency was to write about something I've used frequently (like <b>#map</b>), I felt compelled to research a method I haven't given any play and add hopefully add something new to my vocabulary.  Enumerable<b>#group_by</b>, here's your chance to shine.</p>
+<p>I took one look at the <a href="http://www.ruby-doc.org/core-2.1.3/Enumerable.html#method-i-group_by">ruby-doc example</a> and almost shyed away.  See for yourself and tell me if you got it in one shot.  For me, I had to give a double... nay, triple-take to wrap my head around it.  Let's take baby-steps.</p>
+
+<p>One way of conceptualizing this method is thinking about organizing your stuff.  Take your kitchen paraphernalia as an example.  Imagine everything is scattered in a big box.  Everything is everywhere (this is why I hate moving).  Silverware: Let's gather the spoons, forks, and butter knives together.  Cutlery:  Gimme the steak knives, carver, and my trusty side-kick Santoku.  Dinnerware: plates, bowls, and cups.  What we've done is defined categories: Silverware, Cutlery, and Dinnerware and placed our stuff together according to these categories.  In other words, we've grouped the items in a certain way.  <b>#group_by</b> can do all of this for you.  What can you do for <b>#group_by?</b><p>
+
+<p>Now, transitioning into geek-speak...The <b>#group_by</b> returns a hash (which contains keys and values).  The keys are a single objects.  The keys are the result of the evaluated block.  The values are arrays. The arrays consist of the items iterated that and associated with the respective key.  Again, think of keys as 'categories' and the values being placed in those categories (but in an array).  The name 'group_by' starts to make more sense now.  It groups enumerable items by however you define the group in the block code.  A little better?  Let's solidify it now with an example:</p>
+
+<div id="code_block">
+<code>
+  arr = [1,2,3,4,5,6,7,8,9,10] <br>
+  arr.group_by {|num| num%2}<br>
+    #returns {1=>[1, 3, 5, 7, 9], 0=>[2, 4, 6, 8, 10]}
+</code></div>
+
+<p>See what we did in the code above?  We took an array of integers 1 through 10 and iterated through each integer 'num'.  For each integer we pass through the block code <code>num%2</code>, the result of the block becomes the key and the 'num' gets added as an item in the value array.  In this example, performing a modulus of 2 on any integer will result in either 1 or 0.  The resultant hash by the #group_by method separated them accordingly into 1 category and 0 category.  One final point of sanity is that each item from your original array should have found a home in one of the keys.  <b>#group_by</b> leaves no stone unturned!</p>
+<p>I hear you... Yeah, so what? But take a step back.  What we've done is grouped odd numbers in one array and even numbers in another.  Kinda cool if you ask me.</p>
+<p>Here's another classic challenge: Find all the words that contain the letter 'e'.</p>
+
+<div id="code_block">
+<code>string_arr = ["I", "Love", "Paris", "In", "The", "The", "Springtime"]<br>
+  string_arr.group_by {|word| word.include?("e")}<br>
+    #returns {false=>["I", "Paris", "In"], true=>["Love", "The", "The", "Springtime"]}
+</code></div>
+
+<p>In this case the possible results were either 'true' or 'false', so those were the only keys that were generated.  If the block code resulted in true for that given word, the word would be placed in the 'true' array and if not, the 'false' array. Ta-da!</p>
+<p>Still not impressed?  I get it.  As for me, I've met my objective in learning a new method and I can honestly say I would have never thought to use <b>#group_by</b> up until now.  I'll say it has some useful, practical purpose.  It's going in the toolbox.<p>

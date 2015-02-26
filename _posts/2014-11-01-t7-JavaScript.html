@@ -1,0 +1,77 @@
+---
+layout: post
+title:  Ruby Hashes to Javascript Objects in 10 minutes or it's Free
+date:   2014-11-01
+categories: DBC, Technical
+---
+<p>I love pizza.  I love wine. Put them together and you have the perfect dinner (by my standards). Put them together in Ruby and you can make a hash.  Put them in JavaScript and you can make a _________.</p>
+
+<p>Just as I started to get comfortable, the rug was swept under me. This week, we put Ruby aside and started learning the basics of JS.  Okay, it wasn't that bad, and I had a great opportunity to observe some of the similarities and differences from Ruby.  In particular, it was sad to see Hashes get the boot.  They proved to be very useful for storing values in a 1:1 fashion, i.e. keys and values.  In the world of JS, o where art thou, hash? Disguised in a different name, you say?... *drum roll* ......... 'OBJECTS'</p>
+<p>Yes, hashes are to Ruby as objects are to JS. Join me at the table over some food, spirits, and discussion of the hash/object comparison. Back to the food, shall we.</p>
+
+<p>I stumbled across <a href="http://winefolly.com/tutorial/pizza-wine/"> Wine Folly</a> in trying to find some fun practical hash examples (as well as dinner ideas before my wife gets home). Matching different wines with different pizzas... sounds delicious doesn't it?  Let's store it in a hash while it's still hot!  Recall how this would look like:
+</p>
+<p>
+
+<div id="code_block">
+<code>
+  # In Ruby:<br>
+  pairing_ruby = {sangiovese: 'pepperoni', ganache: 'margherita', syrah: 'sausage', zinfandel: 'hawaiian', chardonnay: 'white', malbec: 'barbeque chicken'}
+  <br><br>
+  // In JS:<br>
+  <b>var</b> pairing_js = {sangiovese: 'pepperoni', ganache: 'margherita', syrah: 'sausage', zinfandel: 'hawaiian', chardonnay: 'white', malbec: 'barbeque chicken'}<br>
+</code></p>
+</div>
+<p>The <code> var </code> in the JS example comes with initializing most variables and all apart of the syntax/documentation that comes with the language. I won't go into too much detail on that here, but will simply show the side-by-side Ruby-JS examples.</p>
+<p>We can retrieve all of the contents by using the following code:</p>
+
+<p>
+<div id="code_block">
+  <code>
+  # In Ruby:<br>
+  pairing_ruby<br><br>
+  // In JS:<br>
+  pairing_js
+</p></code>
+</div>
+<p>
+Both of these lines of code will return wine/pizza pairings to us.</p>
+
+<p>Oh, how nice of you to bring some a bottle of Zin to the party.  Hope it was worth the corkage fee.  I'll handle finding the right pizza to go with that:</p>
+<p>
+  <div id="code_block">
+  <code>
+  # In Ruby:<br>
+  pairing_ruby[:zinfandel]<br>
+  &nbsp &nbsp # => 'hawaiian'<br><br>
+  // In JS:<br>
+  pairing_js.zinfandel;<br>
+  &nbsp &nbsp // => 'hawaiian'
+</code></p>
+</div>
+
+<p>Not a fan of white wines?  Let's remove Chardonnay then.</p>
+<p>
+  <div id="code_block">
+  <code>
+  # In Ruby:<br>
+  pairing_ruby.delete(:chardonnay)<br><br>
+  // In JS:<br>
+  delete pairing_js.chardonnay;
+</code></p>
+  </div>
+
+<p>Voila! And just like that, it's gone.  Hey, I hear salad pizza is the new crave.  Let's keep up with the times and add that to our menu:</p>
+<p>
+<div id="code_block">
+  <code>
+  # In Ruby:<br>
+  pairing_ruby[:sauvignon_blanc] = 'salad'<br><br>
+  // In JS:<br>
+  pairing_js.sauvignon_blanc = 'salad';
+</code></p>
+</div>
+
+<p>In these simple examples, you can see how JS objects behave very similarly to Ruby hashes.  There are the obvious syntax differences, but in principle, we are able to create and manipulate hashes/objects essentially the same way.</p>
+<p>And now I gotta run because this code isn't going to cook the food for me.  I hope these examples gave you some continuity in moving from Ruby to Javascript just as it did for me, and maybe spark the wine/food pairing curiousity in you.</p>
+<p>Next time, when you host, don't make <a href="https://www.youtube.com/watch?v=phj_uh87eQU">this mistake</a>. lol</p>

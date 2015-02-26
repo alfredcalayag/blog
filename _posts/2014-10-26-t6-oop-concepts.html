@@ -1,0 +1,157 @@
+---
+layout: post
+title:  Inheritance and Composition in a Wrap
+date:   2014-10-26
+categories: DBC, Technical
+---
+    <p>We are began flirting with object oriented design in Ruby this week.  As we relax and reflect, let's go over the <b>inheritance</b> and the <b>composition</b> techniques over food. Okay millenials, let's create the next <a href="http://en.wikipedia.org/wiki/Fast_casual_restaurant">fast-casual</a> eatery that we'll use examplify this into something fun and easily digestable. (examplify = to turn into an example)
+    </p>
+
+    <p>Now, we must start with our MVP minimum viable product.  Our specialty will be none other than the humble, the extraordinary, wait for it... burrito!  We will make nothing but burritos because we'll be so damn good at it, that's all our customers will ever want and order.  All of our ingredients will be organic, cruelty-free, and fresh from the farm to the table, and we will have the best recipe that will blow away the burrito-competition.  We'll make a few different specialty burritos, but they will all have the same basic ingredients: tortilla, beans, and rice.  Do you smell that opportunity to use Inheritance?  In code please...</p>
+
+    <div id="code_block">
+    <code>
+    class Burrito<br>
+      &nbsp def tortilla<br>
+        &nbsp &nbsp puts "tortilla"<br>
+      &nbsp end<br><br>
+
+      &nbsp def beans<br>
+        &nbsp &nbsp puts "beans"<br>
+      &nbsp end<br><br>
+
+      &nbsp def rice<br>
+        &nbsp &nbsp puts "rice"<br>
+      &nbsp end<br>
+    end<br>
+    </code>
+    </div>
+
+    <p>Now let's get creative and build a couple of specialty burritos:</p>
+
+    <div id="code_block">
+    <code>
+    class Spicy_shrimp < Burrito<br>
+      &nbsp def shrimp<br>
+        &nbsp &nbsp "succulent shrimp"<br>
+      &nbsp end<br><br>
+
+      &nbsp def spicy_salsa<br>
+        &nbsp &nbsp "spicy salsa. hot goodness."<br>
+      &nbsp end<br>
+    end<br><br>
+
+    class California_Burrito < Burrito<br>
+      &nbsp def carne_asada<br>
+        &nbsp &nbsp "mmm... beef"<br>
+      &nbsp end<br><br>
+
+      &nbsp def mild_salsa<br>
+        &nbsp &nbsp "mild salsa. i put that on everything."<br>
+      &nbsp end<br><br>
+
+      &nbsp def french_fries<br>
+        &nbsp &nbsp "french fries. crunchy!"<br>
+      &nbsp end<br><br>
+    end<br>
+    </code>
+  </div>
+
+    <p>
+    For you inheritance n00bs, both<code> Spicy_shrimp </code> and <code> California_Burrito </code> are subclasses of <code> Burrito </code> so we did not have to re-write the <code> tortilla </code> <code> beans </code> and <code> rice </code> methods.  They already 'inherited' those methods being that <code> Burrito </code> is its parent class.  So for example, the following would work:</p>
+
+    <div id="code_block">
+    <code>
+    my_food = California_burrito.new<br>
+    my_food.beans<br>
+    &nbsp &nbsp # => outputs "beans"<br>
+    </code>
+    </div>
+
+    <p>
+    How cool is that, having only to write the method once in the parent class and being able to assume those methods in the child class.  D.R.Y. enough for you?  Maybe we should cook up a wet burrito. (kkkkkk...).
+  </p>
+  <p>Uh oh... so it looks like Chipotle is opening up next door and we need to step up our game.  We need to get creative and re-invent the burrito FAST!  The problem is, we invested heavily on our <code>Burrito</code> and don't have a budget to add other foods to the menu, so all we have is the Burrito ingredients to work with.  Here's a great idea...How about a de-constructed burrito with no tortilla, but we put all the contents in a bowl. *evil smile* Well, as much as I like the idea, there's not much we can to create this new concoction without re-writing our <code>Burrito</code> class to remove the tortilla.  This would surely mess with our now world-famous <code>California_burrito</code> and <code>Spicy_shrimp</code> sub-classes and we would have to re-write them to add <code>tortilla</code> methods to both of them.</p>
+  <p>Had we known better in the beginning, maybe inheritance was not a bright idea afterall.</p>
+  <p>Let's go back in time (because we have a time machine) to before we created the burrito class.  Instead, let's use the composition technique instead knowing what we know now.  Using this technique, we'll instead lay out all the ingredients as separate classes:</p>
+
+  <div id="code_block">
+  <code>
+  class Tortilla<br>
+    &nbsp "tortilla"<br>
+  end<br><br>
+
+  class Beans<br>
+    &nbsp "beans"<br>
+  end<br><br>
+
+  class Rice<br>
+    &nbsp "rice"<br>
+  end<br><br>
+
+  class Shrimp<br>
+    &nbsp "shrimp"<br>
+  end<br><br>
+
+  class Carne_asada<br>
+    &nbsp "beef"<br>
+  end<br><br>
+
+  class Spicy_salsa<br>
+    &nbsp "spicy salsa"<br>
+  end<br><br>
+
+  class Mild_salsa<br>
+    &nbsp "mild salsa"<br>
+  end<br><br>
+
+  class French_fries<br>
+    &nbsp "french fries"<br>
+  end<br><br>
+</code>
+</div>
+
+<p>And now, let's make that new hot item of a deconstructed burrito bowl as well as one of our specialty burritos:</p>
+
+<div id="code_block">
+  <code>
+    class Shrimp_bowl<br>
+      &nbsp new_beans = Beans.new<br>
+      &nbsp new_rice = Rice.new<br>
+      &nbsp new_shrimp = Shrimp.new<br>
+      &nbsp new_salsa = Spicy_salsa.new<br>
+    end<br><br>
+
+    class California_burrito<br>
+      &nbsp new_tortilla = Tortilla.new<br>
+      &nbsp new_beans = Beans.new<br>
+      &nbsp new_rice = Rice.new<br>
+      &nbsp beef = Carne_asada.new<br>
+      &nbsp new_salsa = Mild_salsa.new<br>
+      &nbsp fries = French_fries.new<br>
+    end<br>
+  </code>
+</div>
+
+  <p>Wow, all this typing about food is making me hungry.  I hope the composition technique is apparent in this example and in contrast to inheritance.  We defined each ingredient as their own separate small classes.  Although this is creating more code overall as well as for our specialty burritos, i.e. <code> California_burrito </code>, we were able to create a completely new item <code> Shrimp_bowl </code> without any dependency of a parent class. From here, we have more flexibility to create drastically new food items on the fly as we start to add/remove ingredients.</p>
+
+  <p>Suppose we want to add tacos to the menu. It's easier now that we've used the composition technique: we create new classes while leave all existing classes alone! Adding this to our code above:</p>
+
+  <div id="code_block">
+  <code>
+  class Taco_shell<br>
+    &nbsp "taco shell"<br>
+  end<br><br>
+
+  class Shrimp_taco<br>
+    &nbsp taco_tortilla = Taco_shell.new<br>
+    &nbsp new_shrimp = Shrimp.new<br>
+    &nbsp new_salsa = Spicy_salsa.new<br>
+  end<br>
+  </code>
+  </div>
+
+<p>Looks like we have a fighting chance against our new neighbors next door.  At this rate, we could continue to easily add more menu items if we wanted.  Torta anyone?</p>
+
+<p>Wrapping it all up (I was waiting so long to use that), you ask the question... <b>Inheritance vs. Composition</b>?  It all depends, and you'll need to assess your current and future situation.  Inheritance may be desirable for situations where the future is almost certainly known.  In the examples we cooked up above, inheritance saved us from a lot of re-writing code but created a problem for us later on when we wanted to expand our menu. If all we wanted to do was burritos and NEVER EVER change, this may have been the preferred way to go.  Composition, on the other hand, required a breakdown of several small classes and perhaps writing more code overall.  However, all that work upfront provided us with a future-friendly expansion free from having to re-write any of the old code.</p>
+<p>Now that we've gotten that out of the way, LET'S EAT!</p>

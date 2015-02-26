@@ -1,0 +1,49 @@
+---
+layout: post
+title:  The Block is Hot
+date:   2014-10-02
+categories: DBC, Technical
+---
+<p>Block vs. Inline vs. Inline-Block.  What's the difference and when do you want to use them?  I'm a very visual learner, so for the purposes of "seeing it" let's play around with some divs, shall we?  Let's use 3 divs set to 50px by 50px and assign them id's: 1, 2, and 3. i.e. our HTML text would look something like this:</p>
+<center><p>&lt div id="1" &gt</p>
+<p>&lt div id="2" &gt</p>
+<p>&lt div id="3" &gt</p></center>
+
+<p>In our CSS file, here's what we would assign to each div:</p>
+
+<p><b><font color="red">display:block</b></font>--> Places each sequential div under the previous one forming a column-like effect.</p>
+
+<center>
+<div id="block1">1
+</div>
+<div id="block2">2
+</div>
+<div id="block3">3
+</div>
+</center>
+
+
+<p><b><font color="red">display:inline</b></font>--> Lines up each sequential div to immediately to the right of the previous div.  Sort of looks like a side-by-side effect, but does not create a line-break at the end of each div.  In the case a div reaches the end of it's container, it will wrap onto a new line (you know, like when a typewriter reaches the end of a line?... i also hope you know what a typewriter is).  Another way of looking at it is similar to a "word-wrap". Notice how there is no margin between div and each "hugs" up next to each other. It is also important to note that a width and height cannot be set in this configuration.  See how it ignored my height and width that was set to 50px x 50px?</p>
+
+<center>
+<div id="inline1">1
+</div>
+<div id="inline2">2
+</div>
+<div id="inline3">3
+</div>
+</center>
+
+<p><b><font color="red">display:inline-block</font></b>-->Gives a true side-by-side effect that places divs only to the left and right. This is different from <b>display:inline</b> in that it DOES NOT have the "wrapping" feature.  Also notice that a margin is automatically created between each div.  </p>
+
+<center>
+<div id="inlineblock1">1
+</div>
+<div id="inlineblock2">2
+</div>
+<div id="inlineblock3">3
+</div>
+</center>
+
+<br><br>
+<p>In summary, I hope this provided a clear demonstrations of the effects for each display type.  I mean, what matters is how it ends up looking in the end, right?  In fact, the above illustrations are actual coded examples that I added to the CSS of this very page (rather than a saved image or screenshot), so you know I'm not pulling a fast one on you.  Go ahead, inspect element all you want.  Seeing is believing.</p>

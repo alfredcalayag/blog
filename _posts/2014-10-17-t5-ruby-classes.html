@@ -1,0 +1,95 @@
+---
+layout: post
+title:  Ruby Classes with Jiu-Jitsu Classes
+date:   2014-10-17
+categories: DBC, Technical
+---
+<p><a href="http://101tees.com/wp-content/uploads/2009/06/bow.jpg">Bow to your sensei!</a> Ok, it's not what you think.  I won't be showing ways to break arms, but I will be talking about Ruby Classes.  Enough with the cat, dog, and pet examples.  We're going to experiment with Ruby Classes in the context of Jiu-Jitsu.  Put away the gi and put on your reading glasses.</p>
+
+<p>A "Class" is an Object. The rumors are true  It can be any object you can dream of.  Today, we are going back to fundamentals and will create the curious...the anxious... THE WHITE BELT.  At this stage, the white belt would know the most basic techniques such as: closed-guard, scissor sweep, collar choke, and (safety first) knows when to tap out when being submitted by their opponent. Now let's put it to code:</p>
+
+<div id="code_block">
+<code>
+  Class WhiteBelt<br>
+    &nbsp def initialize(name)<br>
+    &nbsp &nbsp @name = name<br>
+    &nbsp end<br><br>
+
+    &nbsp def bow<br>
+    &nbsp &nbsp p "Osss, #{@name}. Much respect."<br>
+    &nbsp end <br><br>
+
+    &nbsp def closed_guard<br>
+      &nbsp &nbsp p "In a great attacking position."<br>
+    &nbsp end<br><br>
+
+    &nbsp def scissor_sweep<br>
+      &nbsp &nbsp p "2 points! Now, stay on top."<br>
+    &nbsp end<br><br>
+
+    &nbsp def collar_choke<br>
+      &nbsp &nbsp p "Reach deep into the collar."<br>
+    &nbsp end<br><br>
+
+    &nbsp def tap_out<br>
+      &nbsp &nbsp p "'TAP!'"<br>
+    &nbsp end<br><br>
+  end<br>
+</code></div>
+
+<p>Nice!  We have defined our white belt Class and let the white belt capable of doing some things.  There's some hope for the young padawan after all.  Just one second before you sign up for the next tournament.  Let's talk about how to use these newly acquired skills?
+</p>
+
+<p> First off, the above code is still yet a dream until we create an 'instance' of the white belt.  Nothing has happened yet. There is no white belt until...</p>
+
+<div id="code_block">
+<code>
+  <center>daniel_san = WhiteBelt.new("Daniel")</center>
+</code></div>
+
+<p>What we have done is created an 'instance' of a white belt. 'daniel_san' has been created and is a white belt.  Yup, he's moved on from the crane-kick.  Sorry Mr. Miyagi.</p>
+
+<p>Did you notice something interesting about the <code>name</code> variable.  <code>name</code> is a required argument in the initialize method.  And then we assign <br><center><code>@name = name</code></center><br>
+The '<code>@</code>' symbol prefixing the variable name represents the variable as an <b>'instance variable'</b>.  This, compared to a local variable, allows us to use <code>@name</code> in all other methods within the class without having to passing it in as an argument. When we created the instance of <code>daniel_san</code>, we assigned "Daniel" as his <code>name</code>.  Let's observe what happens when we bow:<br><br>
+
+<div id="code_block">
+<code>daniel_san.bow<br>
+&nbsp &nbsp # prints to console => "Osss, Daniel.  Much respect."</code></div>
+
+<br><br>
+Make sure you reciprocate the gesture if you want to stay in good terms with daniel-san.  Shortly, he will be kicking your butt.  But did you see what happened with <code>@name</code>?  Let's review our <code>bow</code> method one more time:<br><br>
+
+<div id="code_block">
+<code><center>p "Osss, #{@name}. Much respect."</center></code></div>
+
+<br>
+See, our <code> @name </code> <b>instance variable</b> was defined in the initialize method, but we were able to throw it in our <code> bow </code> method without having to write something like <code>def bow(@name)</code>.  Cool, huh?<br><br>
+
+Now let's see Daniel-san in action:</p>
+
+<div id="code_block">
+<code>
+  daniel_san.closed_guard <br> &nbsp # prints to console => "In a great attacking position."<br><br>
+  daniel_san.scissor_sweep <br> &nbsp # prints to console => "2 points! Now, stay on top."<br><br>
+  daniel_san.collar_choke <br> &nbsp # prints to console => "Go deep into the collar."<br>
+</code></div>
+
+<p>I told you he would kick your butt.  Observe the output noted in the comments.  daniel_san can use any of the methods that we defined in the class.  "Daniel-san! You all wet behind ear!" That's enough for one session.</p>
+<p>So, why was creating a Class so useful?  Well... we took so much blood and sweat to turn daniel_san in to a jiu-jitsu white belt, why impart all of the knowledge on him alone?  With a Class, we don't have to re-define all these properties from scratch every time we wanted to create a new white belt.  The WhiteBelt Class contains the framework, the blueprint, the DNA... the makings of a white belt.  We can create virtually endless numbers of white belts using our Class by simply creating more instances:</p>
+
+<div id="code_block">
+<code>
+  marcelo = WhiteBelt.new("Marcelo")<br>
+  charles = WhiteBelt.new("Charles")<br>
+  gabi = WhiteBelt.new("Gabi")<br>
+  lucas = WhiteBelt.new("Lucas")<br>
+  bruno = WhiteBelt.new("Bruno")<br>
+  michael = WhiteBelt.new("Michael")<br>
+  your_name_here = WhiteBelt.new("The Dude")<br>
+</code></div>
+
+<p>What we've just done is created (instances of) more white belts: marcelo, charles, gabi, lucas, bruno, and michael, and they all can do the same thing that daniel_san can do. daniel-san is going to have some excellent training partners... <code> daniel_san.tap</code>. At this rate, we'll have to expand our dojo.</p>
+
+<p>While this is still a very basic example of creating a Ruby Class, I hope this helps provides a basic understanding and beginning to appreciate its usefulness. After all, in many aspect of our lives, let's not forget that we all started out as white belts at one point in time.</p>
+
+<p>Tune in next time when daniel_san learns the <a href="http://www.youtube.com/watch?v=yQYurkBSK6Y">Berimbolo!</a> Osssss!!</p>
