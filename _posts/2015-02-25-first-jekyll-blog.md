@@ -5,7 +5,7 @@ date:   2015-02-25
 categories: first
 ---
 
-Jekyll should be awesome.  And this blog should show that.
+Jekyll should be awesome.  And this blog should show that.  The previous posts prior to this were transferred over from my old website.  Crossing my fingers that they appear decent. I hoping this will be the future home for my blog site and I can continue writing with comfort.
 
 Look, I can write Ruby code:
 {% highlight ruby %}
