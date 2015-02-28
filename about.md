@@ -3,9 +3,8 @@ layout: page
 title: About
 permalink: /about/
 ---
+Hi there. My blog is meant to open-source some of my life experiences.  I talk tech, I talk life.   You'll find that it contains a range of non-related topics and non-related topics that I manipulate into becoming related.  It's all meant to be a sharing information and ideas, and I intend this to be fun.
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Visit my main site and learn more about me at [alfredcalayag.com](http://alfredcalayag.com).
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+Thanks for stopping by.
