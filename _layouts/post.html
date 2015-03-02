@@ -12,4 +12,15 @@ layout: default
     {{ content }}
   </article>
 
+  <aside class="post-categories">
+    {% if page.category %}
+      <h3>Category</h3>
+      {{ page.category}}
+    {% endif %}
+
+    {% if page.tags %}
+      <h3>Tags</h3>
+      {{ page.tags}}
+    {% endif %}
+  </article>
 </div>
