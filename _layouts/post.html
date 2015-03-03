@@ -20,7 +20,11 @@ layout: default
 
     {% if page.tags %}
       <h3>Tags</h3>
-      {{ page.tags}}
+      <p>
+        {% for tag in page.tags %}
+          {{ tag }}
+        {% endfor %}
+      </p>
     {% endif %}
   </article>
 </div>
