@@ -15,8 +15,9 @@ tags: aws s3 route53 domain
 ### **Overview**
 Finally got my personal site hosted.  I decided to go with [Namecheap](http://www.namecheap.com) for the domain and AWS to host.  Specifically, I picked [AWS's S3](http://aws.amazon.com/s3/) service to start my site off as a static page.  It was either that OR creating an EC2 instance with some additional setup.  The latter seemed to be overkill for what I need right now, and I was a little intimidated hearing rumores that setup on AWS comes with a steep learning curve.  I wanted something simple and quick to get my site up, and I wanted it yesterday!
 
-For the most part, the stories were true.  Namecheap was a user-friendly experience, and AWS S3 was a breeze to upload my site files (at the moment it's just html, css, and js files).  Separately, they were quite simple to setup until I got to the integration part.  **Big Headache!**
-I should clarify.  Setting up the root domain site, i.e. "http://rootdomain.com", was simple.  Follow the most basic instructions on both the domain and host sides and you should be fine.
+For the most part, the stories were true.  Namecheap was a user-friendly experience, and AWS S3 was a breeze to upload my site files (at the moment it's just html, css, and js files).  Separately, they were quite simple to setup until I got to integrating them together. I should clarify.  Setting up the root domain site, i.e. "http://rootdomain.com", was simple.  Follow the most basic instructions on both the domain and host sides and you should be fine.
+
+I probably racked my brain a bit unnecessarily in the course of this process, and I thought I'd share the pains in case anyone else is struggling with the setup.
 
 #### **Setup on AWS S3**
 As per the [AWS documentation](http://docs.aws.amazon.com/gettingstarted/latest/swh/website-hosting-intro.html), I created a bucket for the "rootdomain.com" and enable web hosting.  On Route 53, I create a Hosted Zone and added an ALIAS record.  All as instructed.  At this point, it worked fine when you visit the http://rootdomain.com.s3-website-us-east-1.amazonaws.com.  But of course, we're not done yet.
