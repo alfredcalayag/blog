@@ -1,6 +1,7 @@
 # Site settings
 title: Your Friendly Neighborhood Developer
 email: hellooalf@gmail.com
+website: http://alfredcalayag.com
 description: > # this means to ignore newlines until "baseurl:"
   The blog for people who can't code good. And want to do other things good.
 baseurl: "" # the subpath of your site, e.g. /blog/
