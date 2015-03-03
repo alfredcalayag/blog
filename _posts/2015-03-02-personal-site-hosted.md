@@ -1,19 +1,19 @@
 ---
 layout: post
-title:  "Learning About Domains and Hosting"
+title:  "Building a Site with Namecheap, AWS S3, and Route 53"
 date:   2015-03-02
 category: development
 tags: aws s3 route53 domain
 ---
 
-### **TLDR:**
+### **TLDR**
 - Static site creation using AWS S3 is quite simple by itself
 - AWS Route 53 is also straight-forward
-- Setup on Namecheap to point to AWS servers can be confusing.
+- Setup on Namecheap to point to AWS servers can be confusing
 - Be prepared to wait 48+ hours for your site to be completely working.
 
 ### **Overview**
-Finally got my personal site hosted.  I decided to go with [Namecheap](http://www.namecheap.com) for the domain and AWS to host.  Specifically, I picked [AWS's S3](http://aws.amazon.com/s3/) service to start my site off as a static page.  It was either that OR creating an EC2 instance with some additional setup.  The latter seemed to be overkill for what I need right now, and I was a little intimidated after hearing that setup on AWS comes with a steep learning curve.  I wanted something simple and quick to get my site up, and I wanted it yesterday!
+Finally got my personal site hosted.  I decided to go with [Namecheap](http://www.namecheap.com) for the domain and AWS to host.  Specifically, I picked [AWS's S3](http://aws.amazon.com/s3/) service to start my site off as a static page.  It was either that OR creating an EC2 instance with some additional setup.  The latter seemed to be overkill for what I need right now, and I was a little intimidated hearing rumores that setup on AWS comes with a steep learning curve.  I wanted something simple and quick to get my site up, and I wanted it yesterday!
 
 For the most part, the stories were true.  Namecheap was a user-friendly experience, and AWS S3 was a breeze to upload my site files (at the moment it's just html, css, and js files).  Separately, they were quite simple to setup until I got to the integration part.  **Big Headache!**
 I should clarify.  Setting up the root domain site, i.e. "http://rootdomain.com", was simple.  Follow the most basic instructions on both the domain and host sides and you should be fine.
@@ -35,39 +35,36 @@ It seemed to be as simple as creating separate buckets for the subdomain names. 
 
 **Important detail here.**  The part that was NOT as clear was the subdomain nameserver setup on Namecheap.  Remember when I made the decision to define the custom (AWS) nameservers for the rootdomain?  Well, now I needed to go back and add the nameservers that were assigned for the "www" and "blog" given by Route 53.  There were 4 each.  Taking a step back, thats 4 nameservers for the root domain + 4 for the "www" + 4 for the "blog".  That's a total of 12, which is the limit for any 1 domain account.  Namecheap was actally limiting me to add 11 myself, and they manually had to add the 12th on on their end (customer service was decent).
 
-All should work now?  After about 10-20 minutes... it sortof did.  All sites worked on my desktop Chrome browser and spotty at times using Safari.  Using my iPhone, using Chrome, Safari, Dolphin, and Opera, the root domain worked, but the redirect and blog subdomains didn't.  For the first 3 days, they would work intermittently on mobile, and I couldn't fully understand why.  Sometimes the page would fail to load, sometimes a blank white page would load.  Here are/were my theories and attempt to debug as to why:
+All should work now?  After about 10-20 minutes... it sorta did.  All sites worked on my desktop Chrome browser and spotty at times using Safari.  Using my iPhone, using Chrome, Safari, Dolphin, and Opera, the root domain worked, but the redirect and blog subdomains didn't.  For the first 3 days, they would work intermittently on mobile, and I couldn't fully understand why.  Sometimes the page would fail to load, sometimes a blank white page would load.  Here are/were my theories and attempt to debug as to why:
 
 #### **Impatience?**
 Namecheaps support pages mentions, "Note that it may take up to 24-48 hours for the changes to take effect worldwide."  That's nice, but I was thinking that 48 hours was a worst-case, not-common situation.  That's quite a long time for me to assume this is the case only to be surprised after 2 days that it doesn't work and the problem was due to something else.  So, I dig further to see what else could be the problem.
 
 #### **Does it Ping?**
-Again, while it worked on the desktop browsers just fine, I try pinging each of the sites: rootdomain, www redirect, and blog.  Pinging the rootdomain returns a "Request timeout for icmp_seq ...".  The others either couldn't establish a connection or would ping the same way.  Again, the subdomains had spotty connections.  Still need to research why I'm receiving timeouts.
+Again, while it worked on the desktop browsers just fine, I try pinging each of the sites: rootdomain, www redirect, and blog.  Pinging the rootdomain returns a "Request timeout for icmp_seq ...".  The others either couldn't establish a connection or would ping the same way.  Again, the subdomains had spotty connections.  Still need to research why I'm receiving timeouts (because I still do).
 
 #### **CORS Issue?**
-I double... triple checked that I had the correct CORS configuration on each of the buckets, allowing all headers and all origin using the "*" option.
+I double... triple checked that I had the correct CORS configuration on each of the S3 buckets, allowing all headers and all origin using the "*" option.
 
 #### **Bucket Permissions Issue?**
 Another low-cost, triple-check.  I used a very standard configuration from the AWS documentation.  No funny business was going here.
 
 #### **Safari Caching Issue**
-Relentless googling of "iOS Safari blank white page" lead me to believe the problem could be the mobile browser itself.  Something about the response headers provided from the server (i.e. AWS) was missing a "Vary:Origin" header that the browser was expecting and it the browser would make some incorrect assumptions on the files it should cache, hence rendering a blank page.
+Relentless googling of "iOS Safari blank white page" lead me down the path of thinking the problem could be the mobile browser.  Something about the response headers provided from the server (i.e. AWS) was missing a "Vary:Origin" header that the browser was expecting and the browser would make some incorrect assumptions regarding the files it should cache, hence rendering a blank page?  Did not make any sense?  Good, 'cause it still doesn't quite make sense to me either.
 
-I updated my phone's iOS to the latest version, changed my browser settings to allow caching for all sites, and cleared my cookies and history. Still, it didn't fix the problem.
+Was it just *my* phone?  I updated to the latest iOS, changed my browser settings to allow caching for all sites, and cleared my cookies and history as per one of the suggested fixes. Still, it didn't fix the problem... and now that I think of it, this would be a stupid fix to have to require your users to go through this hassle because something is broken on your side.
 
 #### **Chrome DevTools Limitations**
-I used the iPhone simulator in Chrome's Developer Tools, but didn't observe the same intermittent effects as I did on my actual phone.  The sites would work on desktop and also worked fine on the desktop-chrome-iphone-simulator.  So, I wasn't convinced that the DevTools were going to tell me much... other than it *should* work.
+I used the iPhone simulator in Chrome's Developer Tools, but didn't observe the same intermittent effects as I did on my actual phone.  The sites worked fine on the desktop-chrome-iphone-simulator as they did on the desktop browsers.  Because it still didn't work on my iOS Safari from my actual phone, I wasn't convinced that the DevTools were going to tell me much... other than it *should* work.
 
 #### **The Solution**
-After ripping my hair out the last 3 days, it seemed that all I needed was to wait it out.
-
-I used [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) to run some health-check tests on my sites.  I was happy to found that this tool does a check as a desktop browser and simultaneously as a mobile browser. In the morning of the 3rd and glorious day, it confirmed my observations: loading on desktop, but not loading on mobile.
+This morning, I used [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) to run some health-check tests on my sites.  I was happy to found that this tool does a check as a desktop browser and simultaneously as a mobile browser. The tests confirmed my observations: loading on desktop, but not loading on mobile.
 
 Retry. Retry. Retry.  I run the same tests several times back-to-back until I got a successful load on the mobile browser.  It was intermittently working.  Weird.
 
 By midday, those tests results became successful every time.  It would now consistently load in the mobile tests.  I checked again on my phone, and it indeed loaded flawlessly with every excessive tap of the refresh button.
 
 Phew!  I guess that solved it?  The only thing I know for sure is the the passing of time from when I registered the AWS nameservers to Namecheap.  The moral of the story is, **Patience is a virtue**.  Yeah, I'm almost certain that this was the problem, but it's still creepy why I couldn't find anyone else experiencing a similar issue.
-
 
 ### **Post Thoughts**
 
